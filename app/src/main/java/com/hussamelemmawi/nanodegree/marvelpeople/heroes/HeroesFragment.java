@@ -110,7 +110,6 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
-    getActivity().setTheme(R.style.HeroesFragment);
     super.onCreate(savedInstanceState);
     mActivity = (AppCompatActivity) getActivity();
     mGridAdapter = new HeroesAdapter(new ArrayList<Hero>(0));
@@ -351,8 +350,8 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
   }
 
   public void scaleFabWide() {
-    ObjectAnimator scaleX = ObjectAnimator.ofFloat(loadingFab, "scaleX", 1.5f);
-    ObjectAnimator scaleY = ObjectAnimator.ofFloat(loadingFab, "scaleY", 1.5f);
+    ObjectAnimator scaleX = ObjectAnimator.ofFloat(loadingFab, "scaleX", 1f);
+    ObjectAnimator scaleY = ObjectAnimator.ofFloat(loadingFab, "scaleY", 1f);
 
     AnimatorSet scaleWide = new AnimatorSet();
     scaleWide.playTogether(scaleX, scaleY);

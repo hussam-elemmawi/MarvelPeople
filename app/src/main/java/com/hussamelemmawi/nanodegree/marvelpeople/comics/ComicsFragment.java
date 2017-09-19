@@ -98,7 +98,6 @@ public class ComicsFragment extends Fragment implements ComicsContract.View {
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
-    getActivity().setTheme(R.style.ComicsFragment);
     super.onCreate(savedInstanceState);
     mActivity = (AppCompatActivity) getActivity();
     mComicsAdapter = new ComicsAdapter(new ArrayList<Comic>(0));
