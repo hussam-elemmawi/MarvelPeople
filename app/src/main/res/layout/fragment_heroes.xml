@@ -20,15 +20,32 @@
 
   </com.hussamelemmawi.nanodegree.marvelpeople.util.ScrollChildSwipeRefreshLayout>
 
-    <android.support.design.widget.FloatingActionButton
-      android:id="@+id/scroll_utility_fab"
+  <FrameLayout
+    android:id="@+id/loading_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone">
+
+    <io.saeid.fabloading.LoadingView
+      android:id="@+id/loading_fab"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:src="@drawable/ic_arrow_up_24dp"
-      app:backgroundTint="@color/colorPrimary"
-      app:fabSize="mini"
-      app:layout_anchor="@id/refresh_layout"
-      app:layout_anchorGravity="bottom|center"
-      app:pressedTranslationZ="@dimen/fab_pressed_elevation"
+      android:layout_gravity="center"
+      app:mfl_duration="300"
+      app:mfl_onclickLoading="true"
+      app:mfl_repeat="100"
       />
+  </FrameLayout>
+
+  <android.support.design.widget.FloatingActionButton
+    android:id="@+id/scroll_up_fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_arrow_up_24dp"
+    app:backgroundTint="@color/colorPrimary"
+    app:fabSize="mini"
+    app:layout_anchor="@id/refresh_layout"
+    app:layout_anchorGravity="bottom|center"
+    app:pressedTranslationZ="@dimen/fab_pressed_elevation"
+    />
 </android.support.design.widget.CoordinatorLayout>

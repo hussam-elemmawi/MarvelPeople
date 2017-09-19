@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
+import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
@@ -26,6 +28,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,6 +50,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.saeid.fabloading.LoadingView;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -73,8 +77,14 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
   @BindView(R.id.recycler_heroes)
   RecyclerView rvHeroes;
 
-  @BindView(R.id.scroll_utility_fab)
-  FloatingActionButton scrollUtilityFab;
+  @BindView(R.id.scroll_up_fab)
+  FloatingActionButton scrollUpFab;
+
+  @BindView(R.id.loading_layout)
+  FrameLayout loadingLayout;
+
+  @BindView(R.id.loading_fab)
+  LoadingView loadingFab;
 
   private StaggeredGridLayoutManager staggeredGridLayoutManager;
 
@@ -155,7 +165,7 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
       }
     });
 
-    scrollUtilityFab.setOnClickListener(new View.OnClickListener() {
+    scrollUpFab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         rvHeroes.smoothScrollToPosition(0);
@@ -165,6 +175,8 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
     setHasOptionsMenu(true);
 
     loadingIndicatorSet = new AnimatorSet();
+
+    prepareLoadingFab();
 
     return root;
   }
@@ -248,14 +260,13 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
 
   @Override
   public void setFetchingNewPageIndicator(boolean active) {
+    slideDownFab();
     if (active) {
-      slideUpFab();
       loadNextPage = true;
-      startHeartBeatAnimation();
+      animateLoadingNewPage();
     } else {
-      stopHeartBeatAnimation();
+      animateStopLoadingNewPage();
       loadNextPage = false;
-      slideDownFab();
     }
   }
 
@@ -305,7 +316,7 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
   @Override
   public void slideUpFab() {
     if (!fabIsUp) {
-      ObjectAnimator obj = ObjectAnimator.ofFloat(scrollUtilityFab, "translationY", -128);
+      ObjectAnimator obj = ObjectAnimator.ofFloat(scrollUpFab, "translationY", -128);
       obj.setDuration(1000);
       obj.setInterpolator(new FastOutSlowInInterpolator());
       obj.start();
@@ -316,7 +327,7 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
   @Override
   public void slideDownFab() {
     if (fabIsUp) {
-      ObjectAnimator obj = ObjectAnimator.ofFloat(scrollUtilityFab, "translationY", 128);
+      ObjectAnimator obj = ObjectAnimator.ofFloat(scrollUpFab, "translationY", 128);
       obj.setDuration(1000);
       obj.setInterpolator(new FastOutSlowInInterpolator());
       obj.start();
@@ -324,27 +335,54 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
     }
   }
 
-  private void startHeartBeatAnimation() {
-    ObjectAnimator scaleX = ObjectAnimator.ofFloat(scrollUtilityFab, "scaleX", 1.0f, 1.5f);
-    scaleX.setDuration(500);
-    scaleX.setInterpolator(new HeartBeatInterpolator());
-    scaleX.setRepeatCount(ValueAnimator.INFINITE);
-    scaleX.setRepeatMode(ValueAnimator.RESTART);
-
-    ObjectAnimator scaleY = ObjectAnimator.ofFloat(scrollUtilityFab, "scaleY", 1.0f, 1.5f);
-    scaleY.setDuration(500);
-    scaleY.setInterpolator(new HeartBeatInterpolator());
-    scaleY.setRepeatCount(ValueAnimator.INFINITE);
-    scaleY.setRepeatMode(ValueAnimator.RESTART);
-
-    loadingIndicatorSet.playTogether(scaleX, scaleY);
-    loadingIndicatorSet.start();
+  private void animateLoadingNewPage() {
+    loadingLayout.setVisibility(View.VISIBLE);
+    rvHeroes.setAlpha(0.4f);
+    scaleFabWide();
+    loadingFab.resumeAnimation();
+    loadingFab.startAnimation();
   }
 
-  private void stopHeartBeatAnimation() {
-    loadingIndicatorSet.cancel();
-    scrollUtilityFab.setScaleX(1.0f);
-    scrollUtilityFab.setScaleY(1.0f);
+  private void animateStopLoadingNewPage() {
+    loadingFab.pauseAnimation();
+    scaleFabNarrow();
+    loadingLayout.setVisibility(View.GONE);
+    rvHeroes.setAlpha(1.0f);
+  }
+
+  public void scaleFabWide() {
+    ObjectAnimator scaleX = ObjectAnimator.ofFloat(loadingFab, "scaleX", 1.5f);
+    ObjectAnimator scaleY = ObjectAnimator.ofFloat(loadingFab, "scaleY", 1.5f);
+
+    AnimatorSet scaleWide = new AnimatorSet();
+    scaleWide.playTogether(scaleX, scaleY);
+    scaleWide.setDuration(500);
+    scaleWide.setInterpolator(new FastOutSlowInInterpolator());
+    scaleWide.start();
+  }
+
+  public void scaleFabNarrow() {
+    ObjectAnimator scaleX = ObjectAnimator.ofFloat(loadingFab, "scaleX", 0);
+    ObjectAnimator scaleY = ObjectAnimator.ofFloat(loadingFab, "scaleY", 0);
+
+    AnimatorSet scaleNarrow = new AnimatorSet();
+    scaleNarrow.playTogether(scaleX, scaleY);
+    scaleNarrow.setDuration(700);
+    scaleNarrow.setInterpolator(new LinearOutSlowInInterpolator());
+    scaleNarrow.start();
+  }
+
+  private void prepareLoadingFab() {
+    int wolfy = R.drawable.marvel_1_lollipop;
+    int spidy = R.drawable.marvel_2_lollipop;
+    int irono = R.drawable.marvel_3_lollipop;
+    int capitano = R.drawable.marvel_4_lollipop;
+    loadingFab.addAnimation(Color.parseColor("#FFD200"), wolfy, LoadingView.FROM_LEFT);
+    loadingFab.addAnimation(Color.parseColor("#2F5DA9"), spidy, LoadingView.FROM_TOP);
+    loadingFab.addAnimation(Color.parseColor("#FF4218"), irono, LoadingView.FROM_RIGHT);
+    loadingFab.addAnimation(Color.parseColor("#C7E7FB"), capitano, LoadingView.FROM_BOTTOM);
+    loadingFab.setScaleX(0.0f);
+    loadingFab.setScaleY(0.0f);
   }
 
   /**
@@ -386,7 +424,6 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
       // I added another 1 as there is some bugs and this is just a quick hack!
       if (lastVisibleItem[0] + 3 >= itemCounts) {
         mPresenter.getNextPage();
-        slideUpFab();
         loadNextPage = true;
       }
     }
