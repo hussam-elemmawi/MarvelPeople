@@ -2,7 +2,6 @@ package com.hussamelemmawi.nanodegree.marvelpeople.heroes;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -37,7 +36,6 @@ import com.hussamelemmawi.nanodegree.marvelpeople.MarvelDetailsActivity;
 import com.hussamelemmawi.nanodegree.marvelpeople.MarvelPeopleApp;
 import com.hussamelemmawi.nanodegree.marvelpeople.R;
 import com.hussamelemmawi.nanodegree.marvelpeople.data.source.local.model.Hero;
-import com.hussamelemmawi.nanodegree.marvelpeople.util.HeartBeatInterpolator;
 import com.hussamelemmawi.nanodegree.marvelpeople.util.ScrollChildSwipeRefreshLayout;
 import com.hussamelemmawi.nanodegree.marvelpeople.util.TransitionHelper;
 import com.hussamelemmawi.nanodegree.marvelpeople.util.Utility;
@@ -260,7 +258,6 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
 
   @Override
   public void setFetchingNewPageIndicator(boolean active) {
-    slideDownFab();
     if (active) {
       loadNextPage = true;
       animateLoadingNewPage();
@@ -268,6 +265,8 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
       animateStopLoadingNewPage();
       loadNextPage = false;
     }
+    if (fabIsUp)
+      slideDownFab();
   }
 
   @Override

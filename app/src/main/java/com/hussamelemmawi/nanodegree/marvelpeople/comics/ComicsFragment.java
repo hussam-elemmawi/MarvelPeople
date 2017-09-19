@@ -235,14 +235,16 @@ public class ComicsFragment extends Fragment implements ComicsContract.View {
   @Override
   public void setFetchingNewPageIndicator(boolean active) {
     if (active) {
-      slideUpFab();
       loadNextPage = true;
-      startHeartBeatAnimation();
+      setLoadingIndicator(true);
+      rvComics.setAlpha(0.3f);
     } else {
-      stopHeartBeatAnimation();
+      setLoadingIndicator(false);
+      rvComics.setAlpha(1.0f);
       loadNextPage = false;
-      slideDownFab();
     }
+    if (fabIsUp)
+      slideDownFab();
   }
 
   @Override
@@ -369,7 +371,6 @@ public class ComicsFragment extends Fragment implements ComicsContract.View {
       // I'm adding 1 as the indexing start with 0 so I add 1 in case reaching last item == 19
       if (lastVisibleItem + 1 >= itemCounts) {
         mPresenter.getNextPage();
-        slideUpFab();
         loadNextPage = true;
       }
     }
