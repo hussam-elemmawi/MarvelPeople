@@ -12,7 +12,14 @@
     <item name="android:windowContentTransitions">true</item>
     <item name="android:windowAllowEnterTransitionOverlap">false</item>
     <item name="android:windowAllowReturnTransitionOverlap">false</item>
+  </style>
 
+  <style name="HeroesFragment" parent="Base.AppTheme">
+    <item name="android:windowSharedElementEnterTransition">@transition/fade_anim</item>
+    <item name="android:windowSharedElementExitTransition">@transition/fade_anim</item>
+  </style>
+
+  <style name="ComicsFragment" parent="Base.AppTheme">
     <item name="android:windowSharedElementEnterTransition">@transition/changebounds_with_arcmotion</item>
     <item name="android:windowSharedElementExitTransition">@transition/changebounds_with_arcmotion</item>
   </style>

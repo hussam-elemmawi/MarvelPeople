@@ -62,15 +62,10 @@ public class MarvelActivity extends AppCompatActivity {
   }
 
   private void setupWindowTransition() {
-    Slide exitTransition = new Slide();
-    exitTransition.setSlideEdge(Gravity.LEFT);
-    exitTransition.setInterpolator(new FastOutSlowInInterpolator());
-    exitTransition.setDuration(700);
-    getWindow().setExitTransition(exitTransition);
-
-    Fade reenterTransition = new Fade();
-    reenterTransition.setDuration(500);
-    getWindow().setReenterTransition(reenterTransition);
+    Fade fade = new Fade();
+    fade.setDuration(500);
+    getWindow().setExitTransition(fade);
+    getWindow().setReenterTransition(fade);
   }
 
   private void initializeHandelingNavigationActions() {

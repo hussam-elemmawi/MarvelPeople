@@ -110,6 +110,7 @@ public class HeroesFragment extends Fragment implements HeroesContract.View {
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
+    getActivity().setTheme(R.style.HeroesFragment);
     super.onCreate(savedInstanceState);
     mActivity = (AppCompatActivity) getActivity();
     mGridAdapter = new HeroesAdapter(new ArrayList<Hero>(0));

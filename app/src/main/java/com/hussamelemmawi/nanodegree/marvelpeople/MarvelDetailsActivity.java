@@ -69,9 +69,6 @@ public class MarvelDetailsActivity extends AppCompatActivity {
     Fade fade = new Fade();
     fade.setDuration(500);
     getWindow().setEnterTransition(fade);
-
-    Fade slide = new Fade();
-    slide.setDuration(500);
-    getWindow().setReturnTransition(slide);
+    getWindow().setReturnTransition(fade);
   }
 }
