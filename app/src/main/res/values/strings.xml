@@ -1,0 +1,79 @@
+<resources>
+
+  <!-- A -->
+  <string name="app_name">MarvelPeople</string>
+
+  <!-- B -->
+  <string name="back.button">Back button</string>
+
+  <!-- C -->
+  <string name="card.comics">Comics Available</string>
+  <string name="card.series">Series Available</string>
+  <string name="card.stories">Stories Available</string>
+  <string name="card.events">Events Available</string>
+  <string name="card.more.details">Jump into more details</string>
+  <string name="comic.image">Comic image</string>
+  <string name="comic.thumbnail">Comic thumbnail</string>
+  <string name="comics.logo">Comics logo</string>
+  <string name="comic.already.loaded">Hero Already Loaded!</string>
+
+  <!-- D -->
+  <!-- E -->
+  <string name="error.cant.refresh">Can\'t refresh, Check your Inernet connection</string>
+  <string name="error.failed.set.as.wallpaper">Failed to set Hero as Wallpaper</string>
+  <string name="error.nothing.to.refresh">Nothing to refresh!</string>
+  <string name="error.no.fav.heroes">You saved no Hero, Go check\'em and save some!</string>
+  <string name="error.no.fav.comics">You saved no Comic, Go check\'em and save some!</string>
+  <string name="error.no.available.hero.details">No data available for this Hero!</string>
+  <string name="error.no.available.comic.details">No data available for this Comic!</string>
+
+  <!-- F -->
+  <string name="favorite.hero">Save or remove Hero</string>
+  <string name="favorite.comic">Save or remove Comic</string>
+
+  <!-- G -->
+  <!-- H -->
+  <string name="hero.image">Hero image</string>
+  <string name="hero.thumbnail">Hero thumbnail</string>
+  <string name="heroes.logo">Heroes logo</string>
+  <string name="hero.already.loaded">Hero Already Loaded!</string>
+
+  <!-- I -->
+  <!-- J -->
+  <!-- K -->
+  <string name="fragment.key">fragment_key</string>
+  <!-- L -->
+  <string name="list.heroes">Heroes</string>
+  <string name="list.comics">Comics</string>
+
+  <!-- M -->
+  <string name="menu.filter">Filter</string>
+  <string name="menu.invite">Invite</string>
+  <string name="menu.button">Menu button</string>
+  <string name="marvel.logo.image">Marvel app logo</string>
+  <string name="marvel.hash.tag">#Marvel_People</string>
+
+  <!-- N -->
+  <string name="nav.all.heroes">All Heroes</string>
+  <string name="nav.favorite.heroes">Favorite Heroes</string>
+  <string name="nav.all.comics">All Comics</string>
+  <string name="nav.favorite.comics">Favorite Comics</string>
+  <string name="nav.set.as.wallpaper">Set as Wallpaper</string>
+
+  <!-- P -->
+  <!-- Q -->
+  <!-- R -->
+  <!-- S -->
+  <string name="share.button">Share button</string>
+  <string name="share.via">Share Hero via</string>
+
+  <!-- T -->
+  <string name="transition_image">transImage</string>
+  <!-- U -->
+  <!-- V -->
+  <!-- X -->
+  <!-- W -->
+  <!-- Y -->
+  <!-- Z -->
+
+</resources>

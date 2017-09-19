@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- AppBar dimens -->
+  <dimen name="appbar_height">104dp</dimen>
+  <dimen name="appbar_elevation">4dp</dimen>
+  <dimen name="status_bar_size">24dp</dimen>
+
+  <!-- Recycler dimens -->
+  <dimen name="recycler_view_top">8dp</dimen>
+  <dimen name="recycler_view_bottom">8dp</dimen>
+  <dimen name="recycler_loading_progress">32dp</dimen>
+
+  <!-- Recycler items dimens -->
+  <dimen name="ic_star_size">24dp</dimen>
+
+  <!-- Fab dimens -->
+  <dimen name="fab_elevation">6dp</dimen>
+  <dimen name="fab_pressed_elevation">12dp</dimen>
+  <dimen name="fab_margin">16dp</dimen>
+
+  <!-- Toolbar dimens-->
+  <dimen name="toolbar_padding">4dp</dimen>
+  <dimen name="toolbar_buttons_padding">4dp</dimen>
+  <dimen name="toolbar_buttons_size">24dp</dimen>
+  <dimen name="toolbar_buttons_size_small">8dp</dimen>
+
+  <!-- Card dimens -->
+  <dimen name="card_margin">4dp</dimen>
+  <dimen name="card_inner_linear_padding">4dp</dimen>
+  <dimen name="card_pressed_elevation">8dp</dimen>
+  <dimen name="card_elevation">2dp</dimen>
+  <dimen name="card_img_placeholder">200dp</dimen>
+
+  <!-- Linear layout dimens -->
+  <dimen name="big_padding">16dp</dimen>
+  <dimen name="small_padding">8dp</dimen>
+  <dimen name="tiny_padding">2dp</dimen>
+
+  <!-- Views dimens -->
+  <dimen name="text_view_padding_big">8dp</dimen>
+
+  <!-- Empty View -->
+  <string name="empty_views">Nothing to show!</string>
+
+  <!-- Widget dimens -->
+  <dimen name="widget_bar_height">64dp</dimen>
+
+  <integer name="anim_duration_long">500</integer>
+</resources>

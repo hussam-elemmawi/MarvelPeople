@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <android.support.design.widget.AppBarLayout
+    android:id="@+id/app_bar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    app:elevation="@dimen/appbar_elevation">
+
+    <android.support.design.widget.CollapsingToolbarLayout
+      android:id="@+id/collapsing_toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+      <com.hussamelemmawi.nanodegree.marvelpeople.util.TwoThreeFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_collapseMode="parallax">
+
+        <ImageView
+          android:id="@+id/comic_image"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:contentDescription="@string/comic.image"
+          android:scaleType="centerCrop"
+          android:transitionName="@string/transition_image"/>
+
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+          android:id="@+id/image_progress_circle"
+          style="@style/Widget.MaterialProgressBar.ProgressBar.Large"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:indeterminate="true"
+          android:visibility="gone"
+          app:mpb_progressStyle="circular"/>
+
+      </com.hussamelemmawi.nanodegree.marvelpeople.util.TwoThreeFrameLayout>
+
+      <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/scrim_top"/>
+
+      <android.support.v7.widget.Toolbar
+        android:id="@+id/detail_fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_marginTop="@dimen/status_bar_size"
+        android:padding="@dimen/toolbar_padding"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_collapseMode="pin">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal"
+          app:layout_collapseMode="pin">
+
+          <ImageButton
+            android:id="@+id/button_action_nav_up"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back.button"
+            android:paddingEnd="@dimen/toolbar_buttons_padding"
+            android:paddingLeft="@dimen/toolbar_buttons_padding"
+            android:paddingRight="@dimen/toolbar_buttons_padding"
+            android:paddingStart="@dimen/toolbar_buttons_padding"
+            android:src="@drawable/ic_arrow_white_24dp"
+            app:layout_collapseMode="pin"/>
+
+          <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+          <ImageButton
+            android:id="@+id/button_action_share"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/share.button"
+            android:paddingEnd="@dimen/toolbar_buttons_padding"
+            android:paddingLeft="@dimen/toolbar_buttons_padding"
+            android:paddingRight="@dimen/toolbar_buttons_padding"
+            android:paddingStart="@dimen/toolbar_buttons_padding"
+            android:src="@drawable/ic_share_white_24dp"
+            app:layout_collapseMode="pin"/>
+
+          <ImageButton
+            android:id="@+id/button_action_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/menu.button"
+            android:paddingEnd="@dimen/toolbar_buttons_padding"
+            android:paddingLeft="@dimen/toolbar_buttons_padding"
+            android:paddingRight="@dimen/toolbar_buttons_padding"
+            android:paddingStart="@dimen/toolbar_buttons_padding"
+            android:src="@drawable/ic_more_vert_black_24dp"
+            app:layout_collapseMode="pin"/>
+        </LinearLayout>
+
+      </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.CollapsingToolbarLayout>
+  </android.support.design.widget.AppBarLayout>
+
+  <android.support.v4.widget.NestedScrollView
+    android:id="@+id/scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:padding="@dimen/big_padding">
+
+      <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/card_margin"
+        android:layout_marginLeft="@dimen/card_margin"
+        android:layout_marginRight="@dimen/card_margin"
+        android:layout_marginTop="@dimen/card_margin">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
+
+          <TextView
+            android:id="@+id/name_and_desc_card_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/text_view_padding_big"
+            android:text="@string/card.comics"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"/>
+
+          <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/card_margin"
+            android:layout_marginTop="@dimen/card_margin"
+            android:background="@color/grey"/>
+
+          <TextView
+            android:id="@+id/comic_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/text_view_padding_big"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"/>
+
+          <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/card_margin"
+            android:layout_marginTop="@dimen/card_margin"
+            android:background="@color/grey"/>
+
+          <TextView
+            android:id="@+id/more_details_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/text_view_padding_big"
+            android:text="@string/card.more.details"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorAccent"/>
+        </LinearLayout>
+      </android.support.v7.widget.CardView>
+    </LinearLayout>
+  </android.support.v4.widget.NestedScrollView>
+
+  <com.hussamelemmawi.nanodegree.marvelpeople.util.SelectableFloatingActionButton
+    android:id="@+id/favorite_fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/fab_margin"
+    android:contentDescription="@string/favorite.comic"
+    android:src="@drawable/ic_star_grey_24dp"
+    app:elevation="@dimen/fab_elevation"
+    app:fabSize="normal"
+    app:layout_anchor="@id/collapsing_toolbar"
+    app:layout_anchorGravity="bottom|right|end"
+    app:layout_collapseMode="parallax"
+    app:pressedTranslationZ="@dimen/fab_pressed_elevation"/>
+
+</android.support.design.widget.CoordinatorLayout>

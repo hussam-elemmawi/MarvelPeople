@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/container"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <ImageView
+    android:id="@+id/hero_image"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="@string/hero.image"
+    android:scaleType="centerCrop"/>
+
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alpha="0.3"
+    android:background="@drawable/white_scrim"/>
+
+  <android.support.v4.widget.NestedScrollView
+    android:id="@+id/scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:padding="@dimen/big_padding">
+
+      <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/appbar_height"/>
+
+      <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/hero_circular_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="64dp"
+        android:transitionName="@string/transition_image"/>
+
+      <TextView
+        android:id="@+id/name_and_desc_card_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/text_view_padding_big"
+        android:text="@string/card.comics"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/black"/>
+
+      <TextView
+        android:id="@+id/comic_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/text_view_padding_big"
+        android:text="@string/card.events"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/black"/>
+
+      <TextView
+        android:id="@+id/more_details_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/text_view_padding_big"
+        android:text="@string/card.more.details"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorAccent"/>
+    </LinearLayout>
+  </android.support.v4.widget.NestedScrollView>
+
+  <android.support.v7.widget.Toolbar
+    android:id="@+id/detail_fragment_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:layout_marginTop="@dimen/status_bar_size"
+    android:padding="@dimen/toolbar_padding">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal">
+
+      <ImageButton
+        android:id="@+id/button_action_nav_up"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@string/back.button"
+        android:paddingEnd="@dimen/toolbar_buttons_padding"
+        android:paddingLeft="@dimen/toolbar_buttons_padding"
+        android:paddingRight="@dimen/toolbar_buttons_padding"
+        android:paddingStart="@dimen/toolbar_buttons_padding"
+        android:src="@drawable/ic_arrow_white_24dp"
+        app:layout_collapseMode="pin"/>
+
+      <android.support.v4.widget.Space
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@null"/>
+
+      <ImageButton
+        android:id="@+id/button_action_share"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@string/share.button"
+        android:paddingEnd="@dimen/toolbar_buttons_padding"
+        android:paddingLeft="@dimen/toolbar_buttons_padding"
+        android:paddingRight="@dimen/toolbar_buttons_padding"
+        android:paddingStart="@dimen/toolbar_buttons_padding"
+        android:src="@drawable/ic_share_white_24dp"
+        app:layout_collapseMode="pin"/>
+
+      <ImageButton
+        android:id="@+id/button_action_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@string/menu.button"
+        android:paddingEnd="@dimen/toolbar_buttons_padding"
+        android:paddingLeft="@dimen/toolbar_buttons_padding"
+        android:paddingRight="@dimen/toolbar_buttons_padding"
+        android:paddingStart="@dimen/toolbar_buttons_padding"
+        android:src="@drawable/ic_more_vert_black_24dp"
+        app:layout_collapseMode="pin"/>
+    </LinearLayout>
+
+  </android.support.v7.widget.Toolbar>
+
+  <com.hussamelemmawi.nanodegree.marvelpeople.util.SelectableFloatingActionButton
+    android:id="@+id/favorite_fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/fab_margin"
+    android:contentDescription="@string/favorite.hero"
+    android:src="@drawable/ic_star_grey_24dp"
+    app:elevation="@dimen/fab_elevation"
+    app:fabSize="normal"
+    app:layout_anchor="@id/hero_circular_image"
+    app:layout_anchorGravity="bottom|center"
+    app:pressedTranslationZ="@dimen/fab_pressed_elevation"/>
+
+</android.support.design.widget.CoordinatorLayout>

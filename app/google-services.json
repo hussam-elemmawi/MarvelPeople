@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "503557642071",
+    "firebase_url": "https://marvelpeople-67e57.firebaseio.com",
+    "project_id": "marvelpeople-67e57",
+    "storage_bucket": "marvelpeople-67e57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503557642071:android:7b0b72ccad697b40",
+        "android_client_info": {
+          "package_name": "com.hussamelemmawi.nanodegree.marvelpeople"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503557642071-kkmcagvs85at5klhqr4i88s5qg8kt9gh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsTyuAo_UY2YmsxHvXbbJHt3_5mqH_6t8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

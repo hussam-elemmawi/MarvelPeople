@@ -1,0 +1,83 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+  compileSdkVersion 25
+  buildToolsVersion "25.0.2"
+  defaultConfig {
+    applicationId "com.hussamelemmawi.nanodegree.marvelpeople"
+    minSdkVersion 21
+    targetSdkVersion 25
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+  signingConfigs {
+    config {
+      keyAlias 'Elemmawi'
+      keyPassword 'head/alias'
+      storeFile file('../keystore.jks')
+      storePassword 'head/android/keystore'
+    }
+  }
+
+  buildTypes {
+    debug {
+
+    }
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      signingConfig signingConfigs.config
+    }
+  }
+  buildTypes.each {
+    it.buildConfigField 'String', 'MARVEL_PUBLIC_API_KEY', MyMarvelPublicApiKey
+    it.buildConfigField 'String', 'MARVEL_PRIVATE_API_KEY', MyMarvelPrivateApiKey
+  }
+}
+
+ext {
+  supportLibVersion = "25.3.0"
+}
+
+dependencies {
+  compile fileTree(include: ['*.jar'], dir: 'libs')
+  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  })
+  compile "com.android.support:appcompat-v7:${supportLibVersion}"
+  compile "com.android.support:cardview-v7:${supportLibVersion}"
+  compile "com.android.support:design:${supportLibVersion}"
+  compile "com.android.support:support-v4:${supportLibVersion}"
+  // Guava provides a lot of Utilities
+  compile 'com.google.guava:guava:20.0'
+  // Picasso for handling images loading
+  compile 'com.squareup.picasso:picasso:2.5.2'
+  // Stetho for debugging
+  debugCompile 'com.facebook.stetho:stetho:1.4.1'
+  // apt command comes heroFrom the android-apt plugin
+  apt 'com.google.dagger:dagger-compiler:2.7'
+  compile 'com.google.dagger:dagger:2.7'
+  provided 'javax.annotation:jsr250-api:1.0'
+  // ButterKnife library
+  compile 'com.jakewharton:butterknife:8.2.1'
+  apt 'com.jakewharton:butterknife-compiler:8.2.1'
+  // Firebase libraries
+  compile 'com.google.firebase:firebase-core:10.0.0'
+  compile 'com.google.firebase:firebase-crash:10.0.0'
+  // Material progress bar
+  compile 'me.zhanghai.android.materialprogressbar:library:1.3.0'
+  testCompile 'junit:junit:4.12'
+  // Retrofit
+  compile 'com.squareup.retrofit2:retrofit:2.1.0'
+  compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+  // Progress Fab
+  compile 'com.github.jorgecastilloprz:fabprogresscircle:1.01@aar'
+  // Blur effect
+  compile 'jp.wasabeef:blurry:2.1.1'
+  // Circular image view
+  compile 'de.hdodenhof:circleimageview:2.1.0'
+}
+
+apply plugin: 'com.google.gms.google-services'
