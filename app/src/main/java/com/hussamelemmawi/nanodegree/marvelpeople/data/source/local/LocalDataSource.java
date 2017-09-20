@@ -1,5 +1,6 @@
 package com.hussamelemmawi.nanodegree.marvelpeople.data.source.local;
 
+import android.content.AsyncQueryHandler;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -20,32 +21,35 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class LocalDataSource implements DataSource.Local {
 
+  private AsyncQueryHandler asyncQueryHandler;
   private ContentResolver mContentResolver;
 
   public LocalDataSource(@NonNull Context context) {
     checkNotNull(context);
     mContentResolver = context.getContentResolver();
+    asyncQueryHandler = new AsyncQueryHandler(mContentResolver) {
+    };
   }
 
   @Override
   public void saveHeroIntoDatabase(@NonNull Hero hero) {
     checkNotNull(hero);
     ContentValues values = DataContentValues.heroFrom(hero);
-    mContentResolver.insert(HeroEntry.buildHeroesUri(), values);
+    asyncQueryHandler.startInsert(0, null, HeroEntry.buildHeroesUri(), values);
   }
 
   @Override
   public void markAsFavoriteHero(int heroId) {
     ContentValues values = new ContentValues();
     values.put(HeroEntry.COLUMN_FAVORITE, 1);
-    mContentResolver.update(HeroEntry.buildHeroesUriWith(heroId), values, null, null);
+    asyncQueryHandler.startUpdate(0, null, HeroEntry.buildHeroesUriWith(heroId), values, null, null);
   }
 
   @Override
   public void markAsUnFavoriteHero(int heroId) {
     ContentValues values = new ContentValues();
     values.put(HeroEntry.COLUMN_FAVORITE, 0);
-    mContentResolver.update(HeroEntry.buildHeroesUriWith(heroId), values, null, null);
+    asyncQueryHandler.startUpdate(0, null, HeroEntry.buildHeroesUriWith(heroId), values, null, null);
   }
 
   @Override
@@ -62,31 +66,34 @@ public class LocalDataSource implements DataSource.Local {
 
   @Override
   public void deleteAllHeroes() {
-    mContentResolver.delete(
+    asyncQueryHandler.startDelete(
+      0,
+      null,
       HeroEntry.buildHeroesUri(),
       HeroEntry.COLUMN_FAVORITE + " = ? ",
-      new String[]{"0"});
+      new String[]{"0"}
+    );
   }
 
   @Override
   public void saveComicIntoDatabase(@NonNull Comic comic) {
     checkNotNull(comic);
     ContentValues values = DataContentValues.comicFrom(comic);
-    mContentResolver.insert(ComicEntry.buildComicsUri(), values);
+    asyncQueryHandler.startInsert(0, null, ComicEntry.buildComicsUri(), values);
   }
 
   @Override
   public void markAsFavoriteComic(int comicId) {
     ContentValues values = new ContentValues();
     values.put(ComicEntry.COLUMN_FAVORITE, 1);
-    mContentResolver.update(ComicEntry.buildComicsUriWith(comicId), values, null, null);
+    asyncQueryHandler.startUpdate(0, null, ComicEntry.buildComicsUriWith(comicId), values, null, null);
   }
 
   @Override
   public void markAsUnFavoriteComic(int comicId) {
     ContentValues values = new ContentValues();
     values.put(ComicEntry.COLUMN_FAVORITE, 0);
-    mContentResolver.update(ComicEntry.buildComicsUriWith(comicId), values, null, null);
+    asyncQueryHandler.startUpdate(0, null, ComicEntry.buildComicsUriWith(comicId), values, null, null);
   }
 
   @Override
@@ -103,9 +110,12 @@ public class LocalDataSource implements DataSource.Local {
 
   @Override
   public void deleteAllComics() {
-    mContentResolver.delete(
+    asyncQueryHandler.startDelete(
+      0,
+      null,
       ComicEntry.buildComicsUri(),
       ComicEntry.COLUMN_FAVORITE + " = ? ",
-      new String[]{"0"});
+      new String[]{"0"}
+    );
   }
 }

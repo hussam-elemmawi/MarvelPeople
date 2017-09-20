@@ -19,7 +19,7 @@
 
   <!-- D -->
   <!-- E -->
-  <string name="error.cant.refresh">Can\'t refresh, Check your Inernet connection</string>
+  <string name="error.cant.refresh">Can\'t refresh, Check your internet connection</string>
   <string name="error.failed.set.as.wallpaper">Failed to set Hero as Wallpaper</string>
   <string name="error.nothing.to.refresh">Nothing to refresh!</string>
   <string name="error.no.fav.heroes">You saved no Hero, Go check\'em and save some!</string>

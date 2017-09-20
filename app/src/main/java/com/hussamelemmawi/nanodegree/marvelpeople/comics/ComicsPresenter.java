@@ -150,7 +150,6 @@ public class ComicsPresenter implements ComicsContract.Presenter<ComicsFragment>
 
   @Override
   public void onFailure() {
-    // TODO: change to show a network failure
     mView.showLoadingComicsError();
     mView.setFetchingNewPageIndicator(false);
     mRequestingNextPage = false;

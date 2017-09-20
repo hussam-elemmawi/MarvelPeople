@@ -154,7 +154,6 @@ public class HeroesPresenter implements HeroesContract.Presenter<HeroesFragment>
 
   @Override
   public void onFailure() {
-    // TODO: change to show network error
     mView.showLoadingHeroesError();
     mView.setFetchingNewPageIndicator(false);
     mRequestingNextPage = false;
