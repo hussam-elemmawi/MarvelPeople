@@ -38,21 +38,6 @@
       android:authorities="${packageName}"
       android:exported="false"/>
 
-    <receiver android:name=".widget.MarvelPeopleWidgetProvider">
-      <intent-filter>
-        <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-        <action android:name="com.hussamelemmawi.nanodegree.marvelpeople.heroes.ACTION_DATA_UPDATE"/>
-      </intent-filter>
-      <meta-data
-        android:name="android.appwidget.provider"
-        android:resource="@xml/marvel_people_widget_provider_info"/>
-    </receiver>
-
-    <service
-      android:name=".widget.MarvelPeopleWidgetService"
-      android:exported="false"
-      android:permission="android.permission.BIND_REMOTEVIEWS"/>
-
   </application>
 
 </manifest>

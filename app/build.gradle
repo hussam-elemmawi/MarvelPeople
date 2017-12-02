@@ -14,10 +14,10 @@ android {
   }
   signingConfigs {
     config {
-      keyAlias 'Elemmawi'
-      keyPassword 'head/alias'
-      storeFile file('../keystore.jks')
-      storePassword 'head/android/keystore'
+      keyAlias 'keyAlias'
+      keyPassword 'keyPassword'
+      storeFile file('storeFile')
+      storePassword 'storePassword'
     }
   }
 
